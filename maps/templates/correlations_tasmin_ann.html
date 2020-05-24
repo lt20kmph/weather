@@ -1,0 +1,21 @@
+{% extends "base_content_correlations.html" %}
+
+{% block url %} 
+    window.URL = "{% url 'CTasminAnn' %}";
+{% endblock url %}
+
+{% block title %}
+<div id ="after" style="text-align:center; display:none;">
+    <h2 style="margin-bottom:0;">Average minimum temperature correlations
+        between two places</h2></div>
+{% endblock title %}
+
+{% block explanation %}
+    <h4>Annual average daily hours of sunshine (sun)</h4>
+    <p>These data record the annual average hours of daily sunshine in a 
+    given year. In other words 
+    $$\mathrm{sun}(y) = \frac{\mathrm{totalsun}(y)}{|y|},$$
+    where \(\mathrm{totalrainfall}(y)\) and \(|y|\) are the total rainfall and
+    number of days in the year \(y\) respectively.</p>
+{% endblock explanation %}
+

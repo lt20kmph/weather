@@ -1,0 +1,32 @@
+{% extends "base_content_mon.html" %}
+
+{% block url %} 
+    window.mon = {{ mon }};
+    window.URL = "{% url 'sfcWindMon' 0 %}".replace('0',mon);
+{% endblock url %}
+
+{% block title %}
+<div id ="after" style="text-align:center; display:none;">
+    <h2 style="margin-bottom:0;">Average daily windspeed for <span id="month"></span></h2>
+</div>
+{% endblock title %}
+
+{% block monthlynav %}
+    <div id ="monthlynavbar">
+        {% for month in months %}
+            <button id={{month}} onclick="changePage('{% url 'sfcWindMon' forloop.counter0 %}');">{{month}}</button>  
+        {% endfor %}
+    </div>
+{% endblock monthlynav %}
+
+{% block explanation %}
+    <h4>Monthly average daily windspeed (sfcWind)</h4>
+    <p>
+    These data record the average daily windspeed in a  
+    given month at 10m above the surface. In other words 
+    $$\mathrm{sfcWind}(m) = \frac{\sum_{d\in m}\mathrm{sfcWind}(d)}{|m|},$$
+    where \(\mathrm{sfcWind}(d)\) and \(|m|\) are the average windspeed on
+    the day \(d\) and number of
+    days in the month \(m\) respectively.</p>
+{% endblock explanation %}
+

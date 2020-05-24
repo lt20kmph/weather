@@ -1,0 +1,32 @@
+{% extends "base_content_mon.html" %}
+
+{% block url %} 
+    window.mon = {{ mon }};
+    window.URL = "{% url 'tasminMon' 0 %}".replace('0',mon);
+{% endblock url %}
+
+{% block title %}
+<div id ="after" style="text-align:center; display:none;">
+    <h2 style="margin-bottom:0;">Average daily minimum air temperatures for <span id="month"></span></h2>
+</div>
+{% endblock title %}
+
+{% block monthlynav %}
+    <div id ="monthlynavbar">
+        {% for month in months %}
+            <button id={{month}} onclick="changePage('{% url 'tasminMon' forloop.counter0 %}');">{{month}}</button>  
+        {% endfor %}
+    </div>
+{% endblock monthlynav %}
+
+{% block explanation %}
+    <h4>Monthly average minimum air temperatures (tasmin)</h4>
+    <p>These data represent the averaged minimum air temperature,
+    averaged over all days in any given month. In other words
+    $$\mathrm{tasmin}(m)=\frac{\sum_{d\in m} \mathrm{tasmin}(d)}{|m|},$$
+    where \(m\) is a month, \(|m|\) is the number of days in \(m\),
+    the sum is over all days \(d\) in \(m\) and
+    \(\mathrm{tasmin}(d)\) denotes the minimum air temperature recorded on the
+    day \(d\). 
+    </p>
+{% endblock explanation %}

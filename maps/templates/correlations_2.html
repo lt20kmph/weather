@@ -1,0 +1,15 @@
+{% extends "base_content.html" %}
+
+{% block title %}
+<div id ="after" style="text-align:center; display:none;">
+    <h2 style="margin-bottom:0;" id="cCoeff"> The correlation
+        coefficient between {{ln1|lower}} and {{ln2|lower}} in {{loc}} is {{correlationCoeff|floatformat:3}}</h2>
+</div>
+{% endblock title %}
+
+{% block explanation %}
+<h4>{{ln1}}:</h4>
+    {{exp1|safe}}
+<h4>{{ln2}}:</h4>
+    {{exp2|safe}}
+{% endblock explanation %}

@@ -1,0 +1,31 @@
+{% extends "base_content_mon.html" %}
+
+{% block url %} 
+    window.mon = {{ mon }};
+    window.URL = "{% url 'sunMon' 0 %}".replace('0',mon);
+{% endblock url %}
+
+{% block title %}
+<div id ="after" style="text-align:center; display:none;">
+    <h2 style="margin-bottom:0;">Average daily hours of sunshine for <span id="month"></span></h2>
+</div>
+{% endblock title %}
+
+{% block monthlynav %}
+    <div id ="monthlynavbar">
+        {% for month in months %}
+            <button id={{month}} onclick="changePage('{% url 'sunMon' forloop.counter0 %}');">{{month}}</button>  
+        {% endfor %}
+    </div>
+{% endblock monthlynav %}
+
+{% block explanation %}
+    <h4>Monthly average daily sunshine hours (sun)</h4>
+    <p>These data record the average hours of daily sunshine in a 
+    given month. In other words 
+    $$\mathrm{sun}(m) = \frac{\mathrm{totalsun}(m)}{|m|},$$
+    where \(\mathrm{totalsun}(m)\) and \(|m|\) are the total hours 
+    of sunshine and number of
+    days in the month \(m\) respectively.</p>
+{% endblock explanation %}
+

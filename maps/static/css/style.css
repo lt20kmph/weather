@@ -1,0 +1,416 @@
+html,
+body {
+  color: #25383c;
+  background-color: beige;
+  font-family: Helvetica !important;
+  margin: 0;
+  padding: 0%;
+  height: 100%;
+  width: 100%;
+}
+p,
+ul,
+ol {
+  line-height: 1.5em;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-weight: 900;
+}
+
+#wrapper {
+  width: 100%;
+  margin: 0 auto;
+  display: block;
+  flex-direction: row-reverse;
+  justify-content: center;
+}
+
+#Home {
+  width: 96%;
+  max-width: 680px;
+  margin: 0 auto;
+  display: block;
+  /* padding: 2vw; */
+}
+
+#start {
+  display: none;
+}
+
+#mapwrap {
+  margin: 2vw;
+  align-items: stretch;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+#map {
+  width: 92vw;
+  height: 128vw;
+  border: 2px solid;
+  overflow: visible;
+}
+
+#graph {
+  margin: 2vw;
+  flex: 0 0 52vw;
+}
+
+#plot {
+  font-size: 40px;
+  width: 100%;
+}
+
+#header,
+#footer {
+  background-color: #25383c;
+  color: #98afc7;
+  padding: 1%;
+  text-align: center;
+}
+
+#monthlynavbar,
+#navbar {
+  border-top: 2px solid;
+  border-top-color: #98afc7;
+  /* overflow: hidden; */
+  background-color: #25383c;
+  position: absolute;
+  width: 100%;
+}
+
+#monthlynavbar {
+  position: static;
+  overflow: auto;
+  white-space: nowrap;
+}
+
+#footer a {
+  color: #c7b097;
+}
+
+#footer a:visited {
+  color: #b6a086;
+}
+
+#icon {
+  display: none;
+}
+
+#cCoeff {
+  margin: 20px 10% 0% 10%;
+}
+
+#after {
+  text-align: center;
+  display: none;
+}
+
+.dd {
+  display: inline;
+}
+
+.dd button {
+  text-align: left;
+}
+
+.ddLeft {
+  width: 160px;
+}
+
+.ddLeft button {
+  width: 160px;
+}
+
+.ddRight {
+  width: 220px;
+  right: 0;
+}
+
+.ddRight button {
+  width: 220px;
+}
+
+.DropdownC {
+  position: absolute;
+  display: none;
+  top: 31px;
+  box-shadow: 0 8px 16px 0 #001010;
+  z-index: 1;
+}
+
+.DropdownC button {
+  display: block;
+  width: 100%;
+}
+#ddc4,
+#ddc1 {
+  left: 51px;
+}
+
+#ddc3 {
+  left: 211px;
+}
+
+#settings,
+#currentStat1,
+#currentStat2,
+#currentStat3 {
+  font-weight: bold;
+}
+
+#sun,
+#normal,
+#mon {
+  border-top: 2px solid;
+}
+
+#dd1:hover .DropdownC {
+  display: block;
+}
+
+#dd2:hover .DropdownC {
+  display: block;
+}
+
+#dd3:hover .DropdownC {
+  display: block;
+}
+
+#dd4:hover .DropdownC {
+  display: block;
+}
+
+#dd5:hover .DropdownC {
+  display: block;
+}
+
+.settingIcon {
+  float: right;
+}
+
+.fa-home,
+.fa-bars {
+  font-size: 17px;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 200px;
+  background-color: #25383c;
+  color: #98afc7;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  top: 150%;
+  left: 50%;
+  margin-left: -60%;
+  box-shadow: 0 8px 16px 0 #001010;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent #25383c transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+.marker {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+  left: -100px;
+  top: -16px;
+}
+
+.marker .markertext {
+  width: 200px;
+  background-color: #25383c;
+  color: #98afc7;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 150%;
+  left: 50%;
+  box-shadow: 0 -4px 12px 0 #001010;
+}
+
+.marker .markertext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #25383c transparent transparent transparent;
+}
+
+a {
+  color: #25383c;
+}
+
+a:visited {
+  color: #657c94;
+}
+
+h1 {
+  margin: 0;
+}
+
+h4 {
+  margin: 0;
+}
+
+button {
+  float: left;
+  font: inherit;
+  display: inline;
+  text-align: center;
+  border: 0;
+  padding: 7px 16px;
+  text-decoration: none;
+  background-color: #25383c;
+  color: #c7b097;
+}
+
+button:hover:not(.active) {
+  background-color: #98afc7;
+  color: #021931;
+}
+
+.active {
+  background-color: #98afc7;
+  color: #021931;
+}
+
+ol {
+  counter-reset: item;
+}
+
+ol > li {
+  counter-increment: item;
+}
+
+ol ol > li {
+  display: block;
+}
+
+ol ol > li:before {
+  content: counters(item, ".") ". ";
+  margin-left: -20px;
+}
+
+@media screen and (min-width: 760px) {
+  #wrapper {
+    display: flex;
+  }
+
+  #map {
+    width: 35vw;
+    height: 42vw;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  /* #home {display:none;} */
+
+  #navbar .dd {
+    display: none;
+  }
+
+  #icon {
+    display: block;
+    float: right;
+  }
+
+  #navbar.responsive {
+    position: absolute;
+    z-index: 1;
+  }
+
+  #navbar.responsive .dd {
+    display: block;
+    float: none;
+    width: 100%;
+  }
+
+  #navbar.responsive .dd button {
+    width: 100%;
+    /* border-top:2px solid; */
+  }
+
+  #navbar.responsive .dd .DropdownC {
+    width: 100%;
+    left: 0;
+  }
+
+  #monthlynavbar button {
+    display: inline-block;
+    float: none;
+  }
+
+  #dd1 .DropdownC {
+    top: 62px;
+  }
+
+  #dd2 .DropdownC {
+    top: 93px;
+  }
+
+  #dd3 .DropdownC {
+    top: 93px;
+  }
+
+  #dd4 .DropdownC {
+    top: 62px;
+  }
+
+  #dd5 .DropdownC {
+    top: 124px;
+  }
+
+  .tooltip .tooltiptext {
+    margin-left: -30%;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  #graph {
+    flex: 0 0 65%;
+    max-width: 640px;
+  }
+
+  #mapwrap {
+    max-width: 640px;
+  }
+
+  #map {
+    width: 530px;
+    height: 680px;
+  }
+}

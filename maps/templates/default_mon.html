@@ -1,0 +1,15 @@
+{% extends "base_content_mon.html" %}
+
+
+{% block title %}
+{% load tags %}
+<div id ="after" style="text-align:center; display:none;">
+    <h2 style="margin-bottom:0;" id="cCoeff">Monthly {{ln|lower}} in {{loc}} for {{months|get_month:mon}}</h2>
+</div>
+{% endblock title %}
+
+{% block explanation %}
+<h4>{{ln}}:</h4>
+{{exp|safe}}
+{% endblock explanation %}
+

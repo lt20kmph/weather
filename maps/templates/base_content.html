@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<div id="start" style="text-align:center;display:none;"><h2 style="margin-bottom:0;">Click the map to get started!</h2></div>
+<div id="titlewrap">
+{% block title %}
+{% endblock title %}
+</div>
+<div id="wrapper">
+    <div id="mapwrap"><div id="map"></div></div>
+    <div id="graphwrap"><div id="graph">
+        <img id="plot" 
+                    src="data:image/svg+xml;base64,{{g|safe}}" 
+                    alt="Click on the map to get started!"
+                    onerror="this.style.display='none';">
+                    <!-- document.getElementById('start').style.display= -->
+                    <!-- 'block'"> -->
+        {% block explanation %}
+        {% endblock explanation %}
+        </div></div>
+</div>
+{% endblock content %}

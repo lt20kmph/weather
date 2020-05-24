@@ -1,0 +1,10 @@
+*.sqlite3
+*.json
+mkDB.py
+**/__init__.py
+**/__pycache__
+maps/tests.py
+maps/static/ncs
+maps/static/js/config.js
+weather/asgi.py
+weather/secrets.py

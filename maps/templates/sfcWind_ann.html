@@ -1,0 +1,22 @@
+{% extends "base_content.html" %}
+
+{% block url %} 
+    window.URL = "{% url 'sfcWindAnn' %}";
+{% endblock url %}
+
+{% block title %}
+<div id ="after" style="text-align:center; display:none;">
+    <h2 style="margin-bottom:0;">Annual average daily windspeed</h2></div>
+{% endblock title %}
+
+{% block explanation %}
+    <h4>Annual average daily windspeed</h4>
+    <p>
+    These data record the annual average daily windspeed in a 
+    given year. In other words 
+    $$\mathrm{sfcWind}(y) = \frac{\sum_{d\in y}\mathrm{sfcWind}(d)}{|y|},$$
+    where \(\mathrm{sfcWind}(d)\) and \(|y|\) are the average windspeed on the
+    day \(d\) and
+    number of days in the year \(y\) respectively.</p>
+{% endblock explanation %}
+

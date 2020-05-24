@@ -1,0 +1,22 @@
+{% extends "base_content.html" %}
+
+{% block url %} 
+    window.URL = "{% url 'tasminAnn' %}";
+{% endblock url %}
+
+{% block title %}
+<div id ="after" style="text-align:center; display:none;">
+    <h2 style="margin-bottom:0;">Annual average minimum air temperature</h2></div>
+{% endblock title %}
+
+{% block explanation %}
+    <h4>Annual average minimum air temperature (tasmin)</h4>
+    <p>These data represent the averaged minimum air temperature,
+    averaged over all days in any given year. In other words
+    $$\mathrm{tasmin}(y)=\frac{\sum_{d\in y} \mathrm{tasmin}(d)}{365},$$
+    where \(y\) is a year, \(|y|\) is the number of days in \(y\),
+    the sum is over all days \(d\) in \(y\) and
+    \(\mathrm{tasmin}(d)\) denotes the minimum air temperature recorded on the
+    day \(d\).
+    </p>
+{% endblock explanation %}

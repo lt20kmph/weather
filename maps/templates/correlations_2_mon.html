@@ -1,0 +1,17 @@
+{% extends "base_content_mon.html" %}
+
+{% block title %}
+{% load tags %}
+<div id ="after">
+    <h2 id="cCoeff"> The monthly correlation
+        coefficient between {{ln1|lower}} and {{ln2|lower}} in {{loc}} for the
+        month of  {{months|get_month:mon}} is {{correlationCoeff|floatformat:3}}</h2>
+</div>
+{% endblock title %}
+
+{% block explanation %}
+<h4>{{ln1}}:</h4>
+    {{exp1|safe}}
+<h4>{{ln2}}:</h4>
+    {{exp2|safe}}
+{% endblock explanation %}

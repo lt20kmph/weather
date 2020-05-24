@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>{{title}}</title>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v1.9.0/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v1.9.0/mapbox-gl.css" rel="stylesheet" />
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"> -->
+    {% load static %}
+    <script src="{% static "js/jquery-3.4.1.min.js" %}"></script>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <script>
+        window.URL = window.location.pathname;
+        window.mon = '{{ mon }}';
+        window.stat = '{{ stat }}';
+        window.stat1 = '{{ stat1 }}';
+        window.stat2 = '{{ stat2 }}';
+        window.cor = {{ cor }};
+        var months = {{ months|safe }}
+    </script> 
+</head>
+
+<body>
+<div id ="header">
+    <h1>{{title}}</h1>
+</div>
+<div id="navWrapperOuter">
+<div id="navWrapperInner">
+<div id ="navbar">
+    <button id = 'icon' onclick="toggleResponsive();">
+        <i class="settingIcon fas fa-bars"></i>
+    </button> 
+    <button id = 'home' onclick="changePage(
+        '{% url 'home' %}'
+        );">
+        <i class="settingIcon fas fa-home"></i>
+    </button> 
+    {% block navbar %}
+    {% load tags %}
+    {% if cor != 2 %}
+    <div id="dd1" class ="ddLeft dd">
+        <button id="currentStat1">
+            {% if stat == 'sun' %}
+                <i class="fas fa-caret-down"></i>
+                Sun
+                <i class="settingIcon fas fa-sun"></i>
+            {% elif stat == 'rainfall' %}
+                <i class="fas fa-caret-down"></i>
+                Rain
+                <i class="settingIcon fas fa-cloud-showers-heavy"></i>
+            {% elif stat == 'tasmax' %}
+                <i class="fas fa-caret-down"></i>
+                Air temp (Max)
+                <i class="settingIcon fas fa-temperature-high"></i>
+            {% elif stat == 'tasmin' %}
+                <i class="fas fa-caret-down"></i>
+                Air temp (Min)
+                <i class="settingIcon fas fa-temperature-low"></i>
+            {% elif stat == 'sfcWind' %}
+                <i class="fas fa-caret-down"></i>
+                Windspeed
+                <i class="settingIcon fas fa-wind"></i>
+            {% endif %}
+            </button>
+        <div id="ddc1" class="DropdownC ddLeft">
+    <button id = 'sun' onclick="changePage(
+        '{% nav_urls mon cor stat='sun' %}'
+        );">
+        Sun
+        <i class="settingIcon fas fa-sun"></i>
+    </button>
+    <button id = 'rainfall' onclick="changePage(
+        '{% nav_urls mon cor stat='rainfall' %}'
+        );">
+        Rain
+        <i class="settingIcon fas fa-cloud-showers-heavy"></i>
+    </button>
+    <button id = 'tasmax' onclick="changePage(
+        '{% nav_urls mon cor stat='tasmax' %}'
+        );">
+        Air temp (Max)
+        <i class="settingIcon fas fa-temperature-high"></i>
+    </button>
+    <button id = 'tasmin' onclick="changePage(
+        '{% nav_urls mon cor stat='tasmin' %}'
+        );">
+        Air temp (Min)
+        <i class="settingIcon fas fa-temperature-low"></i>
+    </button>
+    <button id = 'sfcWind' onclick="changePage(
+        '{% nav_urls mon cor stat='sfcWind' %}'
+        );">
+        Windspeed
+        <i class="settingIcon fas fa-wind"></i>
+    </button>
+    </div>
+    </div>
+    {% else %}
+    <div id="dd4" class ="ddLeft dd">
+        <button id="currentStat2">
+            {% if stat1 == 'sun' %}
+                <i class="fas fa-caret-down"></i>
+                Sun
+                <i class="settingIcon fas fa-sun"></i>
+            {% elif stat1 == 'rainfall' %}
+                <i class="fas fa-caret-down"></i>
+                Rain
+                <i class="settingIcon fas fa-cloud-showers-heavy"></i>
+            {% elif stat1 == 'tasmax' %}
+                <i class="fas fa-caret-down"></i>
+                Air temp (Max)
+                <i class="settingIcon fas fa-temperature-high"></i>
+            {% elif stat1 == 'tasmin' %}
+                <i class="fas fa-caret-down"></i>
+                Air temp (Min)
+                <i class="settingIcon fas fa-temperature-low"></i>
+            {% elif stat1 == 'sfcWind' %}
+                <i class="fas fa-caret-down"></i>
+                Windspeed
+                <i class="settingIcon fas fa-wind"></i>
+            {% endif %}
+            </button>
+        <div id="ddc4" class="DropdownC ddLeft">
+    <button id = 'sun1' onclick="changePage(
+        '{% nav_urls mon cor stat1='sun' stat2=stat2 %}'
+        );">
+        Sun
+        <i class="settingIcon fas fa-sun"></i>
+    </button>
+    <button id = 'rainfall1' onclick="changePage(
+        '{% nav_urls mon cor stat1='rainfall' stat2=stat2 %}'
+        );">
+        Rain
+        <i class="settingIcon fas fa-cloud-showers-heavy"></i>
+    </button>
+    <button id = 'tasmax1' onclick="changePage(
+        '{% nav_urls mon cor stat1='tasmax' stat2=stat2 %}'
+        );">
+        Air temp (Max)
+        <i class="settingIcon fas fa-temperature-high"></i>
+    </button>
+    <button id = 'tasmin1' onclick="changePage(
+        '{% nav_urls mon cor stat1='tasmin' stat2=stat2 %}'
+        );">
+        Air temp (Min)
+        <i class="settingIcon fas fa-temperature-low"></i>
+    </button>
+    <button id = 'sfcWind1' onclick="changePage(
+        '{% nav_urls mon cor stat1='sfcWind' stat2=stat2 %}'
+        );">
+        Windspeed
+        <i class="settingIcon fas fa-wind"></i>
+    </button>
+    </div>
+    </div>
+    <div id="dd3" class ="ddLeft dd">
+        <button id="currentStat3">
+            {% if stat2 == 'sun' %}
+                <i class="fas fa-caret-down"></i>
+                Sun
+                <i class="settingIcon fas fa-sun"></i>
+            {% elif stat2 == 'rainfall' %}
+                <i class="fas fa-caret-down"></i>
+                Rain
+                <i class="settingIcon fas fa-cloud-showers-heavy"></i>
+            {% elif stat2 == 'tasmax' %}
+                <i class="fas fa-caret-down"></i>
+                Air temp (Max)
+                <i class="settingIcon fas fa-temperature-high"></i>
+            {% elif stat2 == 'tasmin' %}
+                <i class="fas fa-caret-down"></i>
+                Air temp (Min)
+                <i class="settingIcon fas fa-temperature-low"></i>
+            {% elif stat2 == 'sfcWind' %}
+                <i class="fas fa-caret-down"></i>
+                Windspeed
+                <i class="settingIcon fas fa-wind"></i>
+            {% endif %}
+            </button>
+        <div id="ddc3" class="DropdownC ddLeft">
+    <button id = 'sun2' onclick="changePage(
+        '{% nav_urls mon cor stat1=stat1 stat2='sun' %}'
+        );">
+        Sun
+        <i class="settingIcon fas fa-sun"></i>
+    </button>
+    <button id = 'rainfall2' onclick="changePage(
+        '{% nav_urls mon cor stat1=stat1 stat2='rainfall' %}'
+        );">
+        Rain
+        <i class="settingIcon fas fa-cloud-showers-heavy"></i>
+    </button>
+    <button id = 'tasmax2' onclick="changePage(
+        '{% nav_urls mon cor stat1=stat1 stat2=stat1 %}'
+        );">
+        Air temp (Max)
+        <i class="settingIcon fas fa-temperature-high"></i>
+    </button>
+    <button id = 'tasmin2' onclick="changePage(
+        '{% nav_urls mon cor stat1=stat1 stat2='tasmin' %}'
+        );">
+        Air temp (Min)
+        <i class="settingIcon fas fa-temperature-low"></i>
+    </button>
+    <button id = 'sfcWind2' onclick="changePage(
+        '{% nav_urls mon cor stat1=stat1 stat2='sfcWind' %}'
+        );">
+        Windspeed
+        <i class="settingIcon fas fa-wind"></i>
+    </button>
+    </div>
+    </div>
+    {% endif %}
+    {% endblock navbar %} 
+    {% block periodNav %}
+    {% if cor != 2 %}
+    <div id="dd2" class="ddRight dd">
+        <button id="settings" style="float:right;">
+            <i class="fas fa-caret-down"></i>
+            <span id="settingsTextT">
+                {% if mon == 'A' %} Annual {% else %} Monthly {% endif %}
+            </span>
+            /
+            <span id="settingsTextC">
+                {% if cor == 0 %} 
+                Normal 
+                {% elif cor == 1 %} 
+                Correlations 1 
+                {% else %} 
+                Correlations 2 
+                {% endif %}
+            </span>
+            <!-- <i class="settingIcon fas fa-fh fa-cog"></i> -->
+        </button>
+    <div id="ddc2" class="DropdownC ddRight">
+    <button id = 'mon' class="tooltip" 
+            onclick="changePage(
+            '{% nav_urls 0 cor stat=stat %}'
+            );">
+            Monthly
+            {% if mon == 'A' %}
+            <i class="settingIcon fas fa-toggle-off"></i>
+            {% else %}
+            <i class="settingIcon fas fa-toggle-on"></i>
+            {% endif %}
+            <span class="tooltiptext">
+                View monthly data.
+            </span>
+    </button>
+    <button id = 'ann' class="tooltip" 
+            onclick="changePage(
+            '{% nav_urls 'A' cor stat=stat %}'
+            );">
+            Annual
+            {% if mon == 'A' %}
+            <i class="settingIcon fas fa-toggle-on"></i>
+            {% else %}
+            <i class="settingIcon fas fa-toggle-off"></i>
+            {% endif %}
+            <span class="tooltiptext">
+                View annual data.
+            </span>
+    </button>
+    <button id = 'normal' class="tooltip" 
+            onclick="window.location.href='{% nav_urls mon 0 stat=stat %}'
+            ;">
+        Normal
+            {% if cor == 0 %} 
+            <i class="settingIcon fas fa-toggle-on"></i>
+            {% elif cor == 1 %} 
+            <i class="settingIcon fas fa-toggle-off"></i>
+            {% else %} 
+            <i class="settingIcon fas fa-toggle-off"></i>
+            {% endif %}
+            <span class="tooltiptext">
+                View climate data time series for a specific UK location.
+            </span>
+    </button>
+    <button id = 'correlations1' class="tooltip" 
+            onclick="window.location.href='{% nav_urls mon 1 stat=stat %}'
+            ;">
+            Correlations 1 
+            {% if cor == 0 %} 
+            <i class="settingIcon fas fa-toggle-off"></i>
+            {% elif cor == 1 %} 
+            <i class="settingIcon fas fa-toggle-on"></i>
+            {% else %} 
+            <i class="settingIcon fas fa-toggle-off"></i>
+            {% endif %}
+            <span class="tooltiptext">
+                Compare the same statistic at two different places.
+            </span>
+    </button>
+    <button id = 'correlations2' class="tooltip" 
+            onclick="window.location.href=
+            '{% nav_urls mon 2 stat1=stat stat2='tasmax' %}'
+            ;">
+            Correlations 2 
+            {% if cor == 0 %} 
+            <i class="settingIcon fas fa-toggle-off"></i>
+            {% elif cor == 1 %} 
+            <i class="settingIcon fas fa-toggle-off"></i>
+            {% else %} 
+            <i class="settingIcon fas fa-toggle-on"></i>
+            {% endif %}
+            <span class="tooltiptext">
+                Compare two statistics at the same place.
+            </span>
+    </button>
+    </div>
+    </div>
+    {% else %}
+    <div id="dd5" class="ddRight dd">
+        <button id="settings" style="float:right;">
+            <i class="fas fa-caret-down"></i>
+            <span id="settingsTextT">
+                {% if mon == 'A' %} Annual {% else %} Monthly {% endif %}
+            </span>
+            /
+            <span id="settingsTextC">
+                {% if cor == 0 %} 
+                Normal 
+                {% elif cor == 1 %} 
+                Correlations 1 
+                {% else %} 
+                Correlations 2 
+                {% endif %}
+            </span>
+            <!-- <i class="settingIcon fas fa-fh fa-cog"></i> -->
+        </button>
+    <div id="ddc5" class="DropdownC ddRight">
+    <button id = 'mon' class="tooltip" 
+            onclick="changePage(
+            '{% nav_urls 0 cor stat1=stat1 stat2=stat2 %}'
+            );">
+            Monthly
+            {% if mon == 'A' %}
+            <i class="settingIcon fas fa-toggle-off"></i>
+            {% else %}
+            <i class="settingIcon fas fa-toggle-on"></i>
+            {% endif %}
+            <span class="tooltiptext">
+                View monthly data.
+            </span>
+    </button>
+    <button id = 'ann' class="tooltip" 
+            onclick="changePage(
+            '{% nav_urls 'A' cor stat1=stat1 stat2=stat2 %}'
+            );">
+            Annual
+            {% if mon == 'A' %}
+            <i class="settingIcon fas fa-toggle-on"></i>
+            {% else %}
+            <i class="settingIcon fas fa-toggle-off"></i>
+            {% endif %}
+            <span class="tooltiptext">
+                View annual data.
+            </span>
+    </button>
+    <button id = 'normal' class="tooltip" 
+            onclick="window.location.href='{% nav_urls mon 0 stat=stat1 %}'
+            ;">
+        Normal
+            {% if cor == 0 %} 
+            <i class="settingIcon fas fa-toggle-on"></i>
+            {% elif cor == 1 %} 
+            <i class="settingIcon fas fa-toggle-off"></i>
+            {% else %} 
+            <i class="settingIcon fas fa-toggle-off"></i>
+            {% endif %}
+            <span class="tooltiptext">
+                View climate data time series for a specific UK location.
+            </span>
+    </button>
+    <button id = 'correlations1' class="tooltip" 
+            onclick="window.location.href='{% nav_urls mon 1 stat=stat1 %}'
+            ;">
+            Correlations 1 
+            {% if cor == 0 %} 
+            <i class="settingIcon fas fa-toggle-off"></i>
+            {% elif cor == 1 %} 
+            <i class="settingIcon fas fa-toggle-on"></i>
+            {% else %} 
+            <i class="settingIcon fas fa-toggle-off"></i>
+            {% endif %}
+            <span class="tooltiptext">
+                Compare the same statistic at two different places.
+            </span>
+    </button>
+    <button id = 'correlations2' class="tooltip" 
+            onclick="window.location.href=
+            '{% nav_urls mon 2 stat1='sun' stat2='tasmax' %}'
+            ;">
+            Correlations 2 
+            {% if cor == 0 %} 
+            <i class="settingIcon fas fa-toggle-off"></i>
+            {% elif cor == 1 %} 
+            <i class="settingIcon fas fa-toggle-off"></i>
+            {% else %} 
+            <i class="settingIcon fas fa-toggle-on"></i>
+            {% endif %}
+            <span class="tooltiptext">
+                Compare two statistics at the same place.
+            </span>
+    </button>
+    </div>
+    </div>
+    {% endif %}
+    {% endblock periodNav %}
+</div>
+<div id="spacer"></div>
+{% block monthlynav %}
+{% endblock monthlynav %}
+</div>
+</div>
+<div id="homeWrap">
+{% block content %}
+{% endblock content %}
+</div>
+<div id="footer">
+    <h3>References</h3>
+    <p>Met Office; Hollis, D.; McCarthy, M.; Kendon, M.; Legg, T.; Simpson,
+    I. (2018): HadUK-Grid gridded and regional average climate observations
+    for the UK. Centre for Environmental Data Analysis, April 2020.
+    <br>
+    <a href="http://catalogue.ceda.ac.uk/uuid/4dc8450d889a491ebb20e724debe2dfb">http://catalogue.ceda.ac.uk/uuid/4dc8450d889a491ebb20e724debe2dfb</a></p> 
+</div>
+<script src="{% static "js/config.js" %}"></script>
+<script src="{% static "js/scripts.js" %}"></script>
+</body>
+</html>

@@ -1,0 +1,222 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div id="Home">
+
+    <h2 style="text-align:center;">
+        Table of Contents
+    </h2>
+
+    <ol style="font-size: 18px;">
+
+        <li>
+            <a href="#about">
+                About
+            </a>
+        </li>
+
+        <li>
+            <a href="#avsm">
+                Annual vs. monthly data
+            </a>
+        </li>
+
+        <li>
+            <a href="#21ycma">
+                The 21 year centred moving average
+            </a>
+        </li>
+
+        <li>
+            <a href="#correlations">
+                Correlations
+            </a>
+
+            <ol>
+
+                <li>
+                    <a href="#cor1">
+                        Comparing the same statistic at two locations
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#cor2">
+                        Comparing two statistics at the same place
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#pvalue">
+                        The correlation coefficient
+                    </a>
+                </li>
+
+            </ol>
+
+        </li>
+
+    </ol>
+
+    <h4 id="about">
+        1. About
+    </h4>
+
+    <p>
+    The aim of this site is to provide a way to visually explore various
+    datasets freely available from the Met Office. Five categories of
+    data are included:
+
+    <ul>
+        {% load tags %}
+
+        <li>
+            <a href='{% nav_urls mon cor stat='sun' %}'>
+                Sunshine
+            </a>
+        </li>
+
+        <li>
+            <a href='{% nav_urls mon cor stat='rainfall' %}'>
+                Rainfall
+            </a>
+        </li>
+
+        <li>
+            <a href='{% nav_urls mon cor stat='tasmax' %}'>
+                Air temperature (Max)
+            </a>
+        </li>
+
+        <li>
+            <a href='{% nav_urls mon cor stat='tasmin' %}'>
+                Air temperature (Min)
+            </a>
+        </li>
+
+        <li>
+            <a href='{% nav_urls mon cor stat='sfcWind' %}'>
+                Windspeed
+            </a>
+        </li>
+
+    </ul>
+
+    <p>
+    The data provided by the Met Office at various resolution grids covering
+    the UK. For this site I choose to work with the 25km resolution data as
+    a reasonable compromise between accuracy and having a reasonable quantity 
+    of data to deal with. The air temperature and rainfall data spans the
+    period 1884-2018, the sunshine data is for the period 1929-2018 and the
+    windspeed data exists for 1969-2018.
+
+    </p>
+
+    <p>
+    The main function of the site is to provide a clickable map so that
+    the weather data for a particular location can be examined. Along with a
+    plot of the raw data, the 21 year centred moving average is also
+    plotted (see below for more details). 
+
+    </p>
+
+    <p>
+    The purpose of this webpage is not to draw conclusions or do a deep data
+    analysis but simply allow the perusal of freely available data in a
+    way that is hopefully digestible to most humans.
+
+    </p>
+
+    <h4 id="avsm">
+        2. Annual vs. monthly data
+    </h4>
+
+    <p>
+    The data is provided in annual or monthly records. The annual data
+    allows comparing amongst years. The monthly data allows comparisons
+    between specific months of the year. For example, using the monthly data
+    you can compare all of the Septembers for which data exist to see if
+    they are getting sunnier/wetter/colder/etc... Note that other
+    comparisons would be possible using the monthly data, but as far as I
+    can tell it is most interesting to compare Septembers with Septembers
+    and so that is what I have chosen to do here.
+
+    </p>
+
+    <h4 id="21ycma">
+        3. The 21 year centred moving average (CMA21)
+    </h4>
+
+    <p>
+    The 21 year centred moving average for a year is calculated 
+    by averaging the 21 year period centred at that year. In other words 
+    $$\mathrm{CMA21}(y)=\frac{\sum_{i=-10}^{10}\mathrm{data}(y+i)}{21},$$
+    where \(\mathrm{CMA21}(y)\) is the value of the 21 year centred moving
+    average at the year \(y\) and \(\mathrm{data}(y)\) is the value of the
+    data at the year \(y\). 
+    Moving averages
+    are frequently applied to noisy time series (for example in financial
+    markets) to remove local fluctuations
+    and as a way to visualise underlying trends.
+    See 
+    <a href="https://en.wikipedia.org/wiki/Moving_average">
+        wikipedia
+    </a>
+    for more details.
+
+    </p>
+
+
+    <h4 id="correlations">
+        4. Correlations
+    </h4>
+
+    <p>
+    Two different ways to compare across different data sets are
+    provided.
+    You can navigate between normal mode and the two different types of
+    comparison using the menu in the upper right.
+    </p>
+
+    <h4 id="cor1">
+        4.1. Comparing the same statistic at two locations
+    </h4>
+
+    <p>
+    Select two locations using the map and see if the weather in the selected
+    locations are correlated. Obviously locations which are close together are
+    quite strongly correlated and those which are far apart, less so. 
+    </p>
+
+    <h4 id="cor2">
+        4.2. Comparing two statistics at the same place
+    </h4>
+
+    <p>
+    Select two statistics using the menus and a location on the map and you can
+    see if there are any correlations. For example you might like to 
+    investigate the possibility that less sun usually goes along with lower 
+    temperatures.
+    </p>
+
+    <h4 id="pvalue">
+        4.3. The correlation coefficient and linear regression line
+    </h4>
+
+    <p>
+    The correlation coefficient, or more precisely Pearson's r-value is 
+    a measure of the linear correlation between two data sets. 
+    It takes values between -1 and 1 and a value of -1 means the two data sets
+    are exactly negatively correlated and a value of 1 means the two data sets
+    are in perfect positive linear correlation. See 
+    <a href="https://en.wikipedia.org/wiki/Pearson_correlation_coefficient">
+        wikipedia
+    </a>
+    for more information.
+    The correlation coefficient is the slope of the linear regression line 
+    (line of best fit) which is the line that minimises the total sum of 
+    distances from the line to all of the points in the scatter plot.
+    
+    </p>
+</div>
+{% endblock content %}

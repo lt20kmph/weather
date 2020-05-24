@@ -1,0 +1,10 @@
+{% extends "base_content.html" %}
+
+{% block navbar %}
+    <button id = 'sun' onclick="changePage('{% url 'CSunAnn' %}');">Sun</button>
+    <button id = 'rainfall' onclick="changePage('{% url 'CRainfallAnn' %}');">Rain</button>
+    <button id = 'tasmax' onclick="changePage('{% url 'CTasmaxAnn' %}');">Air temp (Max)</button>
+    <button id = 'tasmin' onclick="changePage('{% url 'CTasminAnn' %}');">Air temp (Min)</button>
+    <button id = 'sfcWind' onclick="changePage('{% url 'CSfcWindAnn' %}');">Windspeed</button>
+{% endblock navbar %}
+

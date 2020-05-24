@@ -1,0 +1,30 @@
+{% extends "base_content.html" %}
+
+{% comment %}
+{% block navbar %}
+    <button id = 'sun' onclick="changePage('{% url 'default_mon' 'sun' 0 %}'.replace(0,window.mon));">Sun</button>
+    <button id = 'rainfall' onclick="changePage('{% url 'default_mon' 'rainfall' 0 %}'.replace(0,window.mon));">Rain</button>
+    <button id = 'tasmax' onclick="changePage('{% url 'default_mon' 'tasmax' 0 %}'.replace(0,window.mon));">Air temp (Max)</button>
+    <button id = 'tasmin' onclick="changePage('{% url 'default_mon' 'tasmin' 0 %}'.replace(0,window.mon));">Air temp (Min)</button>
+    <button id = 'sfcWind' onclick="changePage('{% url 'default_mon' 'sfcWind' 0 %}'.replace(0,window.mon));">Windspeed</button>
+{% endblock navbar %}
+{% endcomment %}
+
+{% block monthlynav %}
+{% load tags %}
+    <div id ="monthlynavbar">
+        {% if cor != 2 %}
+        {% for month in months %}
+            <button id={{month}} onclick="changePage(
+                '{% nav_urls forloop.counter0 cor stat=stat %}'
+                );">{{month}}</button>  
+        {% endfor %}
+        {% else %}
+        {% for month in months %}
+            <button id={{month}} onclick="changePage(
+                '{% nav_urls forloop.counter0 cor stat1=stat1 stat2=stat2 %}'
+                );">{{month}}</button>  
+        {% endfor %}
+        {% endif %}
+    </div>
+{% endblock monthlynav %}

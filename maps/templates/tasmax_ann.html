@@ -1,0 +1,22 @@
+{% extends "base_content.html" %}
+
+{% block url %} 
+    window.URL = "{% url 'tasmaxAnn' %}";
+{% endblock url %}
+
+{% block title %}
+<div id ="after" style="text-align:center; display:none;">
+    <h2 style="margin-bottom:0;">Annual average maximum air temperature</h2></div>
+{% endblock title %}
+
+{% block explanation %}
+    <h4>Annual average maximum air temperature (tasmax)</h4>
+    <p>These data represent the averaged maximum air temperature,
+    averaged over all days in any given year. In other words
+    $$\mathrm{tasmax}(y)=\frac{\sum_{d\in y} \mathrm{tasmax}(d)}{365},$$
+    where \(y\) is a year, \(|y|\) is the number of days in \(y\),
+    the sum is over all days \(d\) in \(y\) and
+    \(\mathrm{tasmax}(d)\) denotes the maximum air temperature recorded on the
+    day \(d\).
+    </p>
+{% endblock explanation %}
