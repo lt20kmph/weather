@@ -121,20 +121,20 @@ h5 {
 }
 
 .ddLeft {
-  width: 160px;
+  width: 14em; 
 }
 
 .ddLeft button {
-  width: 160px;
+  width: 14em;
 }
 
 .ddRight {
-  width: 220px;
+  width: 17em;
   right: 0;
 }
 
 .ddRight button {
-  width: 220px;
+  width: 17em;
 }
 
 .DropdownC {
@@ -151,11 +151,11 @@ h5 {
 }
 #ddc4,
 #ddc1 {
-  left: 51px;
+  left: 53px;
 }
 
 #ddc3 {
-  left: 211px;
+  left: calc(53px + 14em);
 }
 
 #settings,
@@ -197,7 +197,9 @@ h5 {
 
 .fa-home,
 .fa-bars {
-  font-size: 17px;
+  font-size: 19px;
+  height:100%;
+  margin:0;
 }
 
 .tooltip {
@@ -336,7 +338,7 @@ ol ol > li:before {
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 790px) {
   /* #home {display:none;} */
 
   #navbar .dd {

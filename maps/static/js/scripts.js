@@ -184,6 +184,14 @@ function updatelatLon2(l1, l2) {
   }
 }
 
+function checkIfMB(f) {
+  if (!mapboxgl.supported) {
+    alert('Your browser does not support Mapbox GL, you won\'t be able to use this site. Please upgrade your browser and try again');
+  } else {
+    f();
+  }
+}
+
 function mkPage1() {
   pageReadyNav();
   pageReadyActives(window.URL.split("/"));
@@ -230,7 +238,7 @@ function mkPage1() {
       marker.addTo(map);
       currentMarkers.push(marker);
     });
-  }
+  };
 }
 
 function mkPage2() {
@@ -331,9 +339,9 @@ function mkPage2() {
 $(document).ready(function () {
   if (window.URL != '/') {
       if (window.cor == 0 || window.cor == 2) {
-        mkPage1();
+        checkIfMB(mkPage1);
       } else {
-        mkPage2();
+        checkIfMB(mkPage2);
       }
   }
 });

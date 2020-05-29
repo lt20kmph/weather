@@ -8,3 +8,4 @@ maps/static/ncs
 maps/static/js/config.js
 weather/asgi.py
 weather/secrets.py
+mysecrets.py

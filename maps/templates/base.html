@@ -4,13 +4,14 @@
     <meta charset="utf-8" />
     <title>{{title}}</title>
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    {% load static %}
+    <script src="{% static "js/errors.js" %}"></script>
+    <script src="{% static "js/jquery-3.4.1.min.js" %}"></script>
     <script src="https://api.mapbox.com/mapbox-gl-js/v1.9.0/mapbox-gl.js"></script>
     <link href="https://api.mapbox.com/mapbox-gl-js/v1.9.0/mapbox-gl.css" rel="stylesheet" />
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"></script>
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"> -->
-    {% load static %}
-    <script src="{% static "js/jquery-3.4.1.min.js" %}"></script>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
     <script>
