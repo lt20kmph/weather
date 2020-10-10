@@ -6,6 +6,8 @@ mkDB.py
 maps/tests.py
 maps/static/ncs
 maps/static/js/config.js
+maps/static/js/jquery-3.4.1.min.js
+maps/static/js/plotly-latest.min.js
 weather/asgi.py
 weather/secrets.py
 mysecrets.py

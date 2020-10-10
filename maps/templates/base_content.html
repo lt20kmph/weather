@@ -10,10 +10,15 @@
     <div id="map"></div>
   </div>
     <div id="graphwrap"><div id="graph">
-        <img id="plot" 
-                    src="data:image/svg+xml;base64,{{g|safe}}" 
-                    alt="Click on the map to get started!"
-                    onerror="this.style.display='none';">
+        <div id="my_plot">
+          {% autoescape off%}
+            {{testPlot|safe}}
+          {% endautoescape %}
+        </div>
+        <!-- <img id="plot" --> 
+        <!--             src="data:image/svg+xml;base64,{{g|safe}}" --> 
+        <!--             alt="Click on the map to get started!" -->
+        <!--             onerror="this.style.display='none';"> -->
                     <!-- document.getElementById('start').style.display= -->
                     <!-- 'block'"> -->
         {% block explanation %}

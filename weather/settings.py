@@ -29,6 +29,7 @@ ALLOWED_HOSTS = ['weather.lt20kmph.co.uk','127.0.0.1']
 
 INSTALLED_APPS = [
     'django.contrib.staticfiles',
+    'django.contrib.contenttypes',
     'maps',
 ]
 
@@ -45,9 +46,15 @@ TEMPLATES = [
 WSGI_APPLICATION = 'weather.wsgi.application'
 
 DATABASES = {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    # },
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': 'tmp_db',
+        'ENGINE': 'django.db.backends.mysql',
+        'USER': 'oli',
+        'PASSWORD': 'mysql'
     }
 }
 

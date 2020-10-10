@@ -60,6 +60,7 @@ h5 {
 #graph {
   margin: 2vw;
   flex: 0 0 52vw;
+  padding-bottom: 20px;
 }
 
 #plot {

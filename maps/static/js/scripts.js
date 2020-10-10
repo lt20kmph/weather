@@ -42,10 +42,15 @@ function pageReadyNav() {
 function pageReadyActives(A) {
   if (window.cor != 2) {
     if (window.cor == 0) {
-      window.stat = A[1];
-      if (A[2] == "mon") {
-        window.mon = A[3];
+      if (A != undefined) {
+        window.stat = A[1];
+        if (A[2] == "mon") {
+          window.mon = A[3];
+        } else {
+          window.mon = "A";
+        }
       } else {
+        window.stat = "tasmax";
         window.mon = "A";
       }
       document.getElementById("normal").classList += " active";
@@ -141,7 +146,10 @@ function changePage(url) {
 }
 
 $(window).bind("popstate", function () {
-  changePageMother(window.location.pathname, "y");
+  pn = window.location.pathname;
+  if (pn != "/"){
+    changePageMother(pn, "y");
+  }
   pageReadyNav();
   pageReadyActives();
   pageReadyTitle();
@@ -151,7 +159,8 @@ function updatelatLon(l) {
   if (l != undefined) {
     var data = { lat: l["lat"], lon: l["lng"] };
     $.post(window.URL, data, function (data) {
-      $("#plot").replaceWith($("#plot", data));
+      console.log($("my_plot", data));
+      $("#my_plot").replaceWith($("#my_plot", data));
       $("#cCoeff").replaceWith($("#cCoeff", data));
       document.getElementById("start").style.display = "none";
       document.getElementById("after").style.display = "block";
@@ -172,7 +181,7 @@ function updatelatLon2(l1, l2) {
       lon2: l2["lng"],
     };
     $.post(window.URL, data, function (data) {
-      $("#plot").replaceWith($("#plot", data));
+      $("#my_plot").replaceWith($("#my_plot", data));
       $("#cCoeff").replaceWith($("#cCoeff", data));
       document.getElementById("start").style.display = "none";
       document.getElementById("after").style.display = "block";
@@ -186,7 +195,9 @@ function updatelatLon2(l1, l2) {
 
 function checkIfMB(f) {
   if (!mapboxgl.supported) {
-    alert('Your browser does not support Mapbox GL, you won\'t be able to use this site. Please upgrade your browser and try again');
+    alert(
+      "Your browser does not support Mapbox GL, you won't be able to use this site. Please upgrade your browser and try again"
+    );
   } else {
     f();
   }
@@ -238,7 +249,7 @@ function mkPage1() {
       marker.addTo(map);
       currentMarkers.push(marker);
     });
-  };
+  }
 }
 
 function mkPage2() {
@@ -337,12 +348,12 @@ function mkPage2() {
 }
 
 $(document).ready(function () {
-  if (window.URL != '/') {
-      if (window.cor == 0 || window.cor == 2) {
-        checkIfMB(mkPage1);
-      } else {
-        checkIfMB(mkPage2);
-      }
+  if (window.URL != "/") {
+    if (window.cor == 0 || window.cor == 2) {
+      checkIfMB(mkPage1);
+    } else {
+      checkIfMB(mkPage2);
+    }
   }
 });
 
